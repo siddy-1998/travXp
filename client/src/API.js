@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:1337';
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:1337"
+    : "https://travel-log-api-ten.vercel.app";
 
 export async function listLogEntries() {
   const response = await fetch(`${API_URL}/api/logs`);
@@ -6,16 +9,20 @@ export async function listLogEntries() {
 }
 
 export async function createLogEntry(entry) {
+
+    const apiKey = entry.apiKey;
+    delete entry.apiKey;
     
     const response = await fetch(`${API_URL}/api/logs`, {
-        method: "POST",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(entry),
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "X-API-KEY": apiKey,
+      },
+      body: JSON.stringify(entry),
     });
 
-    return response.json();
+    const json = await response.json();
     
     //   let json;
     //   if (response.headers.get("content-type").includes("text/html")) {
@@ -26,10 +33,10 @@ export async function createLogEntry(entry) {
     //   } else {
     //     json = await response.json();
     //   }
-    //   if (response.ok) {
-    //     return json;
-    //   }
-    //   const error = new Error(json.message);
-    //   error.response = json;
-    //   throw error;
+      if (response.ok) {
+        return json;
+      }
+      const error = new Error(json.message);
+      error.response = json;
+      throw error;
 }

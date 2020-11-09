@@ -12,8 +12,8 @@ const App = () => {
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
-    latitude: 37.6,
-    longitude: -95.665,
+    latitude: 20.5937,
+    longitude: 78.9629,
     zoom: 3,
   });
 
@@ -38,6 +38,7 @@ const App = () => {
 
   return (
     <ReactMapGL
+      
       {...viewport}
       mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -63,6 +64,7 @@ const App = () => {
                 style={{
                   height: `${6 * viewport.zoom}px`,
                   width: `${6 * viewport.zoom}px`,
+                  
                 }}
                 version="1.1"
                 id="Layer_1"
@@ -112,7 +114,7 @@ const App = () => {
           >
             <div>
               <svg
-                className="marker yellow"
+                className="marker red"
                 style={{
                   height: `${6 * viewport.zoom}px`,
                   width: `${6 * viewport.zoom}px`,
