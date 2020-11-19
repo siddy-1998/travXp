@@ -1,8 +1,13 @@
-# Full Stack Travel Log
+# Full Stack TravelXp
 
-A full stack application to store / list places you have traveled.
+A full stack application to store / list places you have or want to travel.
 
-### TODO
+## Deployed
+* front-end : https://travx.vercel.app/
+* backend : https://travel-log-api-ten.vercel.app/api/logs
+
+
+### Step followed while developing
 
 * [x] Setup Server 
   * [x] Install Dependencies (express 
